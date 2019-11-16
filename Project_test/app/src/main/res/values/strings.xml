@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PenelitianFile</string>
+    <string name="main_title">Ini Main Activity</string>
+    <string name="main_fragment">Welcome!</string>
+    <string name="btn_start">START</string>
+    <string name="btn_exit">Exit</string>
+    <string name="Question_num">Question No : </string>
+    <string name="score">Score : </string>
+    <string name="submit">Submit</string>
+    <string name="welcome">WELCOME</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".View.Child_Fragment"
+    android:background="@drawable/bukit">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+
+            android:layout_marginTop="5dp"
+            android:progressTint="@color/colorAccent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/progress"/>
+
+<!--        <com.daimajia.numberprogressbar.NumberProgressBar-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_width="10dp"-->
+
+<!--            custom:progress_unreached_color="#CCCCCC"-->
+<!--            custom:progress_reached_color="#3498DB"-->
+
+<!--            custom:progress_unreached_bar_height="0.75dp"-->
+<!--            custom:progress_reached_bar_height="1.5dp"-->
+
+<!--            custom:progress_text_size="10sp"-->
+<!--            custom:progress_text_color="#3498DB"-->
+<!--            custom:progress_text_offset="1dp"-->
+<!--            custom:progress_text_visibility="visible"-->
+
+<!--            custom:progress_max="100"-->
+<!--            custom:progress_current="80"-->
+
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            style="@style/NumberProgressBar_Funny_Orange"-->
+<!--            android:id="@+id/progress"/>-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/noQuestion"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:layout_alignParentRight="true"
+                android:text="@string/Question_num"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:layout_alignParentLeft="true"
+                android:text="@string/score"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:background="@color/yellow"
+            android:gravity="center"
+            android:text="1 + 2 = ?"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="5"
+            android:background="@color/yellow"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:id="@+id/btn_pilihan1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="3"
+            android:background="@color/yellow"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/btn_pilihan2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:id="@+id/iv_container1"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:id="@+id/iv_container2"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:id="@+id/iv_container3"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/stiker2"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="100dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/stiker2"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="50dp"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/stiker2"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="180dp"/>
+</FrameLayout>
