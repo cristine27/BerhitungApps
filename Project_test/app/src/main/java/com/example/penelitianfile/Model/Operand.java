@@ -6,11 +6,13 @@ public class Operand {
     float x;
     float y;
     Bitmap bitmap;
+    int jumlah;
 
-    public Operand(float x, float y, Bitmap bitmap){
+    public Operand(int jumlah, float x, float y, Bitmap bitmap){
         this.x = x;
         this.y = y;
         this.bitmap = bitmap;
+        this.jumlah = jumlah;
     }
 
     public Bitmap getBitmap() {
@@ -25,6 +27,10 @@ public class Operand {
         return y;
     }
 
+    public int getJumlah() {
+        return jumlah;
+    }
+
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
@@ -35,5 +41,9 @@ public class Operand {
 
     public void setY(float y) {
         this.y = y;
+    }
+
+    public void setJumlah(int jumlah) {
+        this.jumlah = jumlah;
     }
 }

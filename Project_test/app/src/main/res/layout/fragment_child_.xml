@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".View.Child_Fragment"
-    android:background="@drawable/bukit">
+    android:background="@drawable/bukit"
+    android:id="@+id/frameLayout">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -134,17 +135,17 @@
             android:layout_weight="1"
             android:id="@+id/iv_container1"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_weight="1"
-            android:id="@+id/iv_container2"/>
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:id="@+id/iv_container2"/>-->
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_weight="1"
-            android:id="@+id/iv_container3"/>
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:id="@+id/iv_container3"/>-->
     </LinearLayout>
 
     <ImageView

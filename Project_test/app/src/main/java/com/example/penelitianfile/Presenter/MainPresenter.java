@@ -35,4 +35,16 @@ public class MainPresenter {
     public String getPilihan(int index,int nomor){
         return this.questionOperation.getPilihan(index, nomor);
     }
+
+    public String getOperator(){
+        return this.getOperator();
+    }
+
+    public int getOperand1(){
+        return this.getOperand1();
+    }
+
+    public int getOperand2(){
+        return this.getOperand2();
+    }
 }
