@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 
@@ -46,10 +48,15 @@ public class Child_Fragment extends Fragment {
     protected int bitmapH;
     Context thiscontext;
 
+    int jumOperand1=1;
+    int jumOperand2=2;
+    int tandaOperator=1;
+    int batas=50;
+
     protected Operand operand;
-    protected Operator operator;
-    protected Bitmap bitmapOp;
-    protected Bitmap bitmapOperator;
+    protected Operator operatorTambah;
+    protected Operator operatorKurang;
+    protected Operand operand2;
 
     int currentPosition = 0;
     int numberOfCorrectAnswer = 0;
@@ -68,14 +75,6 @@ public class Child_Fragment extends Fragment {
 
         final FrameLayout fl = (FrameLayout)view.findViewById(R.id.frameLayout);
 
-//        fl.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                bitmapW = fl.getWidth();
-//            }
-//        });
-
-
         this.questionLabel = view.findViewById(R.id.question);
         this.questionCountLabel = view.findViewById(R.id.noQuestion);
         this.scoreLabel = view.findViewById(R.id.score);
@@ -85,8 +84,11 @@ public class Child_Fragment extends Fragment {
         this.iv_container = view.findViewById(R.id.iv_container1);
 
         this.presenter = new MainPresenter();
+        this.paint = new Paint();
         this.bitmapW = 450;
         this.bitmapH = 300;
+
+        this.initiateCanvas();
 
         Log.d("Check",bitmapW + " " + bitmapH);
 
@@ -105,6 +107,7 @@ public class Child_Fragment extends Fragment {
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     currentPosition++;
                                     setData();
+                                    resetCanvas();
                                     sweetAlertDialog.dismiss();
                                 }
                             }).show();
@@ -120,6 +123,7 @@ public class Child_Fragment extends Fragment {
                                     sweetAlertDialog.dismiss();
                                     currentPosition++;
                                     setData();
+                                    resetCanvas();
                                 }
                             }).show();
                 }
@@ -168,11 +172,60 @@ public class Child_Fragment extends Fragment {
         return view;
     }
 
+    public void initiateCanvas(){
+        this.bitmap = Bitmap.createBitmap(this.bitmapW,this.bitmapH,Bitmap.Config.ARGB_8888);
+
+        Bitmap operand = BitmapFactory.decodeResource(getResources(),R.drawable.apel);
+        Bitmap operand2 = BitmapFactory.decodeResource(getResources(),R.drawable.bebek);
+        Bitmap tambah = BitmapFactory.decodeResource(getResources(),R.drawable.plus);
+        Bitmap kurang = BitmapFactory.decodeResource(getResources(),R.drawable.minus);
+
+        this.bitmap = this.bitmap.copy(Bitmap.Config.ARGB_8888,true);
+        this.canvas = new Canvas(this.bitmap);
+
+        this.operand = new Operand(1,this.bitmapW/3-operand.getWidth(),this.bitmapH/2-operand.getHeight()/2,operand);
+        this.operand2 = new Operand(1,this.bitmapW-operand2.getWidth(),this.bitmapH/2-operand.getHeight()/2,operand2);
+        this.operatorTambah = new Operator(this.bitmapW/2-tambah.getWidth()/4,this.bitmapH/2-tambah.getHeight()/3,tambah);
+        this.operatorKurang = new Operator(this.bitmapW/2-kurang.getWidth(),this.bitmapH/2+kurang.getHeight()/3,kurang);
+        this.iv_container.setImageBitmap(this.bitmap);
+
+        this.resetCanvas();
+    }
+
+    public void resetCanvas(){
+        Log.d("Check Masuk","reset canvas masuk");
+        this.bitmap.eraseColor(Color.TRANSPARENT);
+
+        this.paint = new Paint();
+        for (int i = 0; i < jumOperand1; i++) {
+            this.canvas.drawBitmap(this.operand.getBitmap(),this.operand.getX(),this.operand.getY(),paint);
+            this.operand.setX(this.operand.getX()+10+batas);
+            this.operand.setY(this.operand.getY()+5+batas);
+        }
+        if(tandaOperator==1){
+            this.canvas.drawBitmap(this.operatorTambah.getBitmap(),this.operatorTambah.getX(),this.operatorTambah.getY(),paint);
+        }
+        else{
+            this.canvas.drawBitmap(this.operatorKurang.getBitmap(),this.operatorKurang.getX(),this.operatorKurang.getY(),paint);
+        }
+
+        for (int i = 0; i < jumOperand2; i++) {
+            this.canvas.drawBitmap(this.operand2.getBitmap(),this.operand2.getX(),this.operand2.getY(),paint);
+            this.operand2.setX(this.operand2.getX()-batas);
+            this.operand2.setY(this.operand2.getY()+5+batas);
+        }
+        this.iv_container.invalidate();
+    }
+
     public void setData(){
         if(presenter.getSize()>currentPosition) {
+            //keterangan 1 == + dan o == -
             if(presenter.getOperator().equals("+")){
-//                bitmapOperator
+                this.tandaOperator = 1;
             }
+            this.jumOperand1 = presenter.getOperand1();
+            this.jumOperand2 = presenter.getOperand2();
+
             questionLabel.setText(presenter.getQuestion(currentPosition));
             scoreLabel.setText("Score :" + numberOfCorrectAnswer + "/" + presenter.getSize());
             questionCountLabel.setText("Question No : " + (currentPosition + 1));
