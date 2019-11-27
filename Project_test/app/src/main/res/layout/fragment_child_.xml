@@ -64,7 +64,6 @@
             android:layout_margin="10dp"
             android:background="@color/yellow"
             android:gravity="center"
-            android:text="1 + 2 = ?"
             android:textColor="@color/black"
             android:textSize="20dp" />
 

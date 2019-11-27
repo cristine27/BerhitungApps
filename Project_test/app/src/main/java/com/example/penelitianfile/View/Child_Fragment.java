@@ -51,12 +51,26 @@ public class Child_Fragment extends Fragment {
     int jumOperand1=1;
     int jumOperand2=2;
     int tandaOperator=1;
-    int batas=50;
+    int batas=25;
+    int trigerOperator1 = 0;
+    int trigerOperator2 = 0;
 
     protected Operand operand;
     protected Operator operatorTambah;
     protected Operator operatorKurang;
     protected Operand operand2;
+
+//    operand 1
+    int defaultOperand1x;
+    int defaultOperand1y;
+
+//    operand 2
+    int defaultOperand2x;
+    int defaultOperand2y;
+
+//    operator
+    int defaultOperatorx;
+    int defaultOperatory;
 
     int currentPosition = 0;
     int numberOfCorrectAnswer = 0;
@@ -148,6 +162,7 @@ public class Child_Fragment extends Fragment {
                                     currentPosition++;
                                     setData();
                                     sweetAlertDialog.dismiss();
+                                    resetCanvas();
                                 }
                             }).show();
                 }
@@ -162,6 +177,7 @@ public class Child_Fragment extends Fragment {
                                     sweetAlertDialog.dismiss();
                                     currentPosition++;
                                     setData();
+                                    resetCanvas();
                                 }
                             }).show();
                 }
@@ -183,24 +199,46 @@ public class Child_Fragment extends Fragment {
         this.bitmap = this.bitmap.copy(Bitmap.Config.ARGB_8888,true);
         this.canvas = new Canvas(this.bitmap);
 
-        this.operand = new Operand(1,this.bitmapW/3-operand.getWidth(),this.bitmapH/2-operand.getHeight()/2,operand);
-        this.operand2 = new Operand(1,this.bitmapW-operand2.getWidth(),this.bitmapH/2-operand.getHeight()/2,operand2);
-        this.operatorTambah = new Operator(this.bitmapW/2-tambah.getWidth()/4,this.bitmapH/2-tambah.getHeight()/3,tambah);
-        this.operatorKurang = new Operator(this.bitmapW/2-kurang.getWidth(),this.bitmapH/2+kurang.getHeight()/3,kurang);
+        this.defaultOperand1x = this.bitmapW/3-operand.getWidth()-80;
+        this.defaultOperand1y = this.bitmapH/2-operand.getHeight()/2;
+
+        this.defaultOperand2x = this.bitmapW-operand2.getWidth()/2-50;
+        this.defaultOperand2y = this.bitmapH/2-operand.getHeight()/2;
+
+        this.operand = new Operand(1,this.bitmapW/3-operand.getWidth()-80,this.bitmapH/2-operand.getHeight()/2,operand);
+        this.operand2 = new Operand(1,this.bitmapW-operand2.getWidth()/2-50,this.bitmapH/2-operand.getHeight()/2,operand2);
+        this.operatorTambah = new Operator(this.bitmapW/2-tambah.getWidth()/2,this.bitmapH/2-tambah.getHeight()/2,tambah);
+        this.operatorKurang = new Operator(this.bitmapW/2-kurang.getWidth()/2,this.bitmapH/2-kurang.getHeight()/2,kurang);
         this.iv_container.setImageBitmap(this.bitmap);
 
         this.resetCanvas();
     }
 
     public void resetCanvas(){
+        this.trigerOperator2 = 0;
+        this.trigerOperator1 = 0;
+        this.operand.setX(this.defaultOperand1x);
+        this.operand.setY(this.defaultOperand1y);
+
+        this.operand2.setX(this.defaultOperand2x);
+        this.operand2.setY(this.defaultOperand2y);
         Log.d("Check Masuk","reset canvas masuk");
         this.bitmap.eraseColor(Color.TRANSPARENT);
 
         this.paint = new Paint();
         for (int i = 0; i < jumOperand1; i++) {
-            this.canvas.drawBitmap(this.operand.getBitmap(),this.operand.getX(),this.operand.getY(),paint);
-            this.operand.setX(this.operand.getX()+10+batas);
-            this.operand.setY(this.operand.getY()+5+batas);
+            if(trigerOperator1<2) {
+                this.canvas.drawBitmap(this.operand.getBitmap(), this.operand.getX(), this.operand.getY(), paint);
+                this.operand.setX(this.operand.getX() + 20 + batas);
+                this.operand.setY(this.operand.getY());
+                this.trigerOperator1++;
+            }
+            else {
+                this.canvas.drawBitmap(this.operand.getBitmap(),this.operand.getX(),this.operand.getY(),paint);
+                this.operand.setX(this.defaultOperand1x);
+                this.operand.setY(this.operand.getY() + 20 + batas);
+                this.trigerOperator1 = 0;
+            }
         }
         if(tandaOperator==1){
             this.canvas.drawBitmap(this.operatorTambah.getBitmap(),this.operatorTambah.getX(),this.operatorTambah.getY(),paint);
@@ -210,9 +248,18 @@ public class Child_Fragment extends Fragment {
         }
 
         for (int i = 0; i < jumOperand2; i++) {
-            this.canvas.drawBitmap(this.operand2.getBitmap(),this.operand2.getX(),this.operand2.getY(),paint);
-            this.operand2.setX(this.operand2.getX()-batas);
-            this.operand2.setY(this.operand2.getY()+5+batas);
+            if(trigerOperator2<2){
+                this.canvas.drawBitmap(this.operand2.getBitmap(),this.operand2.getX(),this.operand2.getY(),paint);
+                this.operand2.setX(this.operand2.getX() - 20 - batas);
+                this.operand2.setY(this.operand2.getY());
+                this.trigerOperator2++;
+            }
+            else {
+                this.canvas.drawBitmap(this.operand2.getBitmap(),this.operand2.getX(),this.operand2.getY(),paint);
+                this.operand2.setX(this.defaultOperand2x);
+                this.operand2.setY(this.operand2.getY() - 20 - batas);
+                this.trigerOperator2 = 0;
+            }
         }
         this.iv_container.invalidate();
     }
@@ -220,17 +267,22 @@ public class Child_Fragment extends Fragment {
     public void setData(){
         if(presenter.getSize()>currentPosition) {
             //keterangan 1 == + dan o == -
-            if(presenter.getOperator().equals("+")){
+            if(presenter.getOperator(currentPosition).equals("+")){
                 this.tandaOperator = 1;
             }
-            this.jumOperand1 = presenter.getOperand1();
-            this.jumOperand2 = presenter.getOperand2();
+            else{
+                this.tandaOperator = 0;
+            }
+            this.jumOperand1 = presenter.getOperand1(currentPosition);
+            this.jumOperand2 = presenter.getOperand2(currentPosition);
+            System.out.println("jumOperan1 " + this.jumOperand1);
+            System.out.println("jumOperan2 " + this.jumOperand2);
 
-            questionLabel.setText(presenter.getQuestion(currentPosition));
-            scoreLabel.setText("Score :" + numberOfCorrectAnswer + "/" + presenter.getSize());
-            questionCountLabel.setText("Question No : " + (currentPosition + 1));
-            btn_pil1.setText(presenter.getPilihan(currentPosition,1));
-            btn_pil2.setText(presenter.getPilihan(currentPosition,2));
+//            questionLabel.setText(presenter.getQuestion(currentPosition));
+//            scoreLabel.setText("Score :" + numberOfCorrectAnswer + "/" + presenter.getSize());
+//            questionCountLabel.setText("Question No : " + (currentPosition + 1));
+//            btn_pil1.setText(presenter.getPilihan(currentPosition,1));
+//            btn_pil2.setText(presenter.getPilihan(currentPosition,2));
         }else{
             new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("You have successfully completed the quiz")

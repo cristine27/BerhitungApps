@@ -67,19 +67,19 @@ public class QuestionModel{
     public String getOperator(){
         String temp [];
         temp = this.question.trim().split(" ");
-        return temp[1];
+        return temp[3];
     }
 
     public String getOperan_1(){
         String temp [];
         temp = this.question.trim().split(" ");
-        return temp[0];
+        return temp[2];
     }
 
     public String getOperan_2(){
         String temp[];
         temp = this.question.trim().split(" ");
-        return temp[3];
+        return temp[4];
     }
 
     public String[] getPilihan() {

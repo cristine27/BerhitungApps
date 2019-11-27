@@ -53,11 +53,11 @@ public class QuestionOperation {
 
 //   untuk soal default
     public void setUpQuestion(){
-        this.addQuestion("What is 1+2 ? ","3","3,1");
-        this.addQuestion("What is 1+8 ? ","9","6,9");
-        this.addQuestion("What is 9-2 ? ","7","7,4");
-        this.addQuestion("What is 8-2 ? ","6","6,1");
-        this.addQuestion("What is 12+3 ? ","15","5,15");
+        this.addQuestion("What is 1 + 2 ? ","3","3,1");
+        this.addQuestion("What is 2 - 1 ? ","1","1,3");
+        this.addQuestion("What is 5 - 2 ? ","3","3,4");
+        this.addQuestion("What is 6 - 2 ? ","4","6,4");
+        this.addQuestion("What is 4 + 3 ? ","7","5,7");
     }
 
     public List<QuestionModel> getList(){

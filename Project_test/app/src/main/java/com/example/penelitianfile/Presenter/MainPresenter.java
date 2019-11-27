@@ -36,15 +36,15 @@ public class MainPresenter {
         return this.questionOperation.getPilihan(index, nomor);
     }
 
-    public String getOperator(){
-        return this.getOperator();
+    public String getOperator(int index){
+        return this.questionList.get(index).getOperator();
     }
 
-    public int getOperand1(){
-        return this.getOperand1();
+    public int getOperand1(int index){
+        return Integer.parseInt(this.questionList.get(index).getOperan_1());
     }
 
-    public int getOperand2(){
-        return this.getOperand2();
+    public int getOperand2(int index){
+        return Integer.parseInt(this.questionList.get(index).getOperan_2());
     }
 }
