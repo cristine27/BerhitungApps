@@ -9,16 +9,20 @@ import android.view.WindowManager;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.penelitianfile.R;
+import com.fevziomurtekin.widget.RainlayoutView;
+
 
 public class Welcome_Screen extends AppCompatActivity {
-    protected int waktu_load = 3000; // 3 detik
+    protected int waktu_load = 5000; // 3 detik
+    protected RainlayoutView rainview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.screen_welcome);
+        rainview = findViewById(R.id.activity_main);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -26,6 +30,7 @@ public class Welcome_Screen extends AppCompatActivity {
                 startActivity(intent);
                 Animatoo.animateZoom(Welcome_Screen.this);
                 finish();
+                rainview.animationClear();
             }
         },waktu_load);
     }

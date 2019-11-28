@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.penelitianfile.Model.Operand;
 import com.example.penelitianfile.Model.Operator;
 import com.example.penelitianfile.Presenter.MainPresenter;
@@ -86,7 +87,7 @@ public class Child_Fragment extends Fragment {
         // Inflate the layout for this fragment
         thiscontext = container.getContext();
         final View view = inflater.inflate(R.layout.fragment_child_, container, false);
-
+        Animatoo.animateSplit(thiscontext);
         final FrameLayout fl = (FrameLayout)view.findViewById(R.id.frameLayout);
 
         this.questionLabel = view.findViewById(R.id.question);
@@ -279,10 +280,10 @@ public class Child_Fragment extends Fragment {
             System.out.println("jumOperan2 " + this.jumOperand2);
 
 //            questionLabel.setText(presenter.getQuestion(currentPosition));
-//            scoreLabel.setText("Score :" + numberOfCorrectAnswer + "/" + presenter.getSize());
-//            questionCountLabel.setText("Question No : " + (currentPosition + 1));
-//            btn_pil1.setText(presenter.getPilihan(currentPosition,1));
-//            btn_pil2.setText(presenter.getPilihan(currentPosition,2));
+            scoreLabel.setText("Score :" + numberOfCorrectAnswer + "/" + presenter.getSize());
+            questionCountLabel.setText("Question No : " + (currentPosition + 1));
+            btn_pil1.setText(presenter.getPilihan(currentPosition,1));
+            btn_pil2.setText(presenter.getPilihan(currentPosition,2));
         }else{
             new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("You have successfully completed the quiz")

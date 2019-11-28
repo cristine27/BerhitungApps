@@ -38,7 +38,7 @@
                 android:textColor="@color/black"
                 android:textSize="12dp"
                 android:layout_alignParentRight="true"
-                android:text="@string/Question_num"/>
+                android:text="@string/Question_num" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="5"
-            android:background="@color/yellow"
+            android:background="@drawable/drawables"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="30dp"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="3"
-            android:background="@color/yellow"
+            android:background="@drawable/drawables"
             android:textSize="20sp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="20dp"

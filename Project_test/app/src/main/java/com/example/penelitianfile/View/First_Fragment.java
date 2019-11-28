@@ -23,6 +23,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
  * A simple {@link Fragment} subclass.
  */
 public class First_Fragment extends Fragment {
+    protected Context context;
     protected Button btn_start;
     protected Button btn_exit;
     protected ImageButton ib_music;
@@ -40,7 +41,8 @@ public class First_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first_, container, false);
-
+        this.context = container.getContext();
+        Animatoo.animateZoom(this.context);
         this.mediaPlayer = MediaPlayer.create(getActivity(),R.raw.backsound);
         this.btn_start = view.findViewById(R.id.btn_start);
         this.btn_exit = view.findViewById(R.id.btn_exit);
