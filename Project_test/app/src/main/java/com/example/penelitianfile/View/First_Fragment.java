@@ -43,6 +43,7 @@ public class First_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_first_, container, false);
         this.context = container.getContext();
         Animatoo.animateZoom(this.context);
+        System.out.println("ukuran "+container.getWidth()+" "+container.getHeight());
         this.mediaPlayer = MediaPlayer.create(getActivity(),R.raw.backsound);
         this.btn_start = view.findViewById(R.id.btn_start);
         this.btn_exit = view.findViewById(R.id.btn_exit);

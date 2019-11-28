@@ -4,19 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.First_Fragment"
-    android:background="@drawable/background">
+    android:background="@drawable/whale">
 
 
-    <TextView
-        android:id="@+id/fragment_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:text="@string/main_fragment"
-        android:textAlignment="center"
-        android:textColor="@color/tosca"
-        android:textSize="50dp"
-        android:fontFamily="monospace"/>
+<!--    <TextView-->
+<!--        android:id="@+id/fragment_tv"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="180dp"-->
+<!--        android:text="@string/main_fragment"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/darkblue"-->
+<!--        android:textSize="50dp"-->
+<!--        android:fontFamily="monospace"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +47,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/ib_music"
-        android:background="@drawable/ic_music_note"/>
+        android:background="@drawable/music"/>
 
 </FrameLayout>
